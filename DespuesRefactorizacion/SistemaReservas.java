@@ -7,8 +7,10 @@ public class SistemaReservas {
     public Map<Integer, Object> db = new HashMap<>();
     public int contador = 1;
 
-    // Nombre poco claro, muchos parámetros sueltos, flag sin uso y códigos de error
-    public int hacer(String nombre, String email, boolean socio, Funcion f,
+    // TÉCNICA UTILIZADA: Rename method
+    // REFACTOR: Al aplicar la técnica se cambio el nombre poco claro del método por
+    // uno mas claro
+    public int hacerReserva(String nombre, String email, boolean socio, Funcion f,
                      char[] filas, int[] numeros, boolean imprimir, String canal) {
         if (nombre == null || f == null) return -1;
         if (filas.length == 0 || filas.length != numeros.length) return -2;
