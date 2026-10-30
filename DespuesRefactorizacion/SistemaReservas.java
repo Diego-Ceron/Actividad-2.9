@@ -25,7 +25,13 @@ public class SistemaReservas {
 
             // se recorre la lista de asientos sin depender de indices
             for (Asiento asiento : asientos) {
-                f.ocupar(asiento.fila, asiento.numero);
+                if (!f.estaDisponible(asiento.fila, asiento.numero)) {
+                    return -3;
+                }
+            }
+
+            for (Asiento asiento : asientos) {
+                f.ocuparAsiento(asiento.fila, asiento.numero);
                 lista.add(asiento.toString());
             }
 
