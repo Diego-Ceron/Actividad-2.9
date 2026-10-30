@@ -39,7 +39,8 @@ public class Funcion {
         ocupados.remove(codigo);
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
+    //TECNICA UTILIZADA: Remove setting method
+    //REFACTOR: Se elimino el metodo setPrecio, no deberia existir
+    //ya que el precio es un atributo que se configura al momento 
+    //de crearse el objetto 'funcion' y no se modifica despues.
 }
