@@ -19,11 +19,21 @@ public class Reserva {
         this.cancelada = cancelada;
     }
 
+    public double calcularPrecio() {
+        double base = funcion.precio * asientos.size();
+
+        if (cliente.socio) {
+            return aplicarDescuento(base, 0.15);
+        }
+
+        return base;
+    }
+
     //TECNICA UTILIZADA: Parametize method
     // REFACTOR: El metodo se movió a la clase Reserva, es mas adecuado que esta
     // haga el calculo y devuelva el resultado ya que esta clase conoce los parámetros
     // que se usan.
-    public double aplicarDescuento(double precio, double porcentaje) {
+    private double aplicarDescuento(double precio, double porcentaje) {
         return precio - precio * porcentaje;
     }
 }

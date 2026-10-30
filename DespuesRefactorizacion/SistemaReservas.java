@@ -30,24 +30,18 @@ public class SistemaReservas {
             }
 
             Reserva r = new Reserva(contador, cliente, f, lista);
-            r.precio = calcularPrecio(r, cliente.socio ? "socio" : "general");
+//TECNICA UTILIZADA: Replace parameter with method
+// REFACTOR: La funcion calcularPrecio se pasó a la clase Reserva, ya que tiene
+// sentido que esta haga el calculo ya que conoce los datos. Al resolver este problema
+// se resuelve el problema 7, en el cual la tarifa se elegia con texto. El metodo 'calcularPrecio'
+// ahora compara directamente cliente.socio para decidir si aplicar descuento o no.
+            r.precio = r.calcularPrecio();
             db.put(contador, r);
             contador++;
             return r.id;
         } catch (IllegalStateException e) {
             return -3;
         }
-    }
-
-    // Tipo de tarifa como String y if/else
-    public double calcularPrecio(Reserva r, String tipo) {
-        double base = r.funcion.precio * r.asientos.size();
-        if (tipo.equals("general")) {
-            return base;
-        } else if (tipo.equals("socio")) {
-            return r.aplicarDescuento(base, 0.15);
-        }
-        return base;
     }
 
     // Downcast repetido en cada llamada
