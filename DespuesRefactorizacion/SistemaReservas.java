@@ -12,9 +12,11 @@ public class SistemaReservas {
     // uno mas claro
     // TÉCNICA UTILIZADA: Remove parameter
     //REFACTOR: Al aplicar la técnica se elimina el parámetro sin usar 'boolean imprimir'
-    public int hacerReserva(String nombre, String email, boolean socio, Funcion f,
+    // TÉCNICA UTILIZADA: Preserve whole object
+    // REFACTOR: Se pasa el objeto cliente en vez de cada uno de sus parámetros individualmente
+    public int hacerReserva(Cliente cliente, Funcion f,
                      char[] filas, int[] numeros, String canal) {
-        if (nombre == null || f == null) return -1;
+        if (cliente == null || f == null) return -1;
         if (filas.length == 0 || filas.length != numeros.length) return -2;
         try {
             List<String> lista = new ArrayList<>();
@@ -22,9 +24,8 @@ public class SistemaReservas {
                 f.ocupar(filas[i], numeros[i]);   // si falla a mitad, los anteriores ya quedaron ocupados
                 lista.add("" + filas[i] + numeros[i]);
             }
-            Cliente c = new Cliente(nombre, email, socio);
-            Reserva r = new Reserva(contador, c, f, lista);
-            r.precio = calcularPrecio(r, socio ? "socio" : "general");
+            Reserva r = new Reserva(contador, cliente, f, lista);
+            r.precio = calcularPrecio(r, cliente.socio ? "socio" : "general");
             db.put(contador, r);
             contador++;
             return r.id;
