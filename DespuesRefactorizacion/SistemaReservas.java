@@ -10,8 +10,10 @@ public class SistemaReservas {
     // TÉCNICA UTILIZADA: Rename method
     // REFACTOR: Al aplicar la técnica se cambio el nombre poco claro del método por
     // uno mas claro
+    // TÉCNICA UTILIZADA: Remove parameter
+    //REFACTOR: Al aplicar la técnica se elimina el parámetro sin usar 'boolean imprimir'
     public int hacerReserva(String nombre, String email, boolean socio, Funcion f,
-                     char[] filas, int[] numeros, boolean imprimir, String canal) {
+                     char[] filas, int[] numeros, String canal) {
         if (nombre == null || f == null) return -1;
         if (filas.length == 0 || filas.length != numeros.length) return -2;
         try {
