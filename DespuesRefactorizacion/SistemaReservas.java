@@ -50,19 +50,28 @@ public class SistemaReservas {
         }
     }
 
-    // Downcast repetido en cada llamada
+    //TECNICA UTILIZADA: Encapsulate downcast
+    //REFACTOR: Se encapsuló el casteo de object a reserva en obtenerReserva(),
+    //por lo que los demas metodos funcionan directamente con objetos reserva.
     public int cancelar(int id) {
-        Reserva r = (Reserva) db.get(id);
+        Reserva r = obtenerReserva(id);
+
         if (r == null) return -1;
         if (r.cancelada) return -2;
+
         for (String a : r.asientos) {
             r.funcion.liberarAsiento(a);
         }
+
         r.cancelarReserva();
         return 0;
     }
 
-    public Object buscar(int id) {
-        return db.get(id);
+    private Reserva obtenerReserva(int id) {
+        return (Reserva) db.get(id);
+    }
+
+    public Reserva buscar(int id) {
+        return obtenerReserva(id);
     }
 }

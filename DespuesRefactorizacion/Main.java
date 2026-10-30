@@ -27,7 +27,7 @@ public class Main {
         System.out.println("Reserva Luis: " + r2);
         System.out.println("Ocupados: " + f.obtenerOcupados());
 
-        Reserva ana = (Reserva) s.buscar(1);
+        Reserva ana = s.buscar(1);
         System.out.println("Precio Ana (socio): " + ana.precio);
 
         System.out.println("Cancelar 1: " + s.cancelar(1));
