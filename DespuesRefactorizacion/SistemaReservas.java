@@ -28,6 +28,9 @@ public class SistemaReservas {
         List<String> lista = new ArrayList<>();
 
         // se recorre la lista de asientos sin depender de indices
+        //TECNICA UTILIZADA: Replace exception with test
+        //REFACTOR: Antes se usaba el try catch para intentar ocupar el asiento y esperar que
+        //se lanzara la excepcion. Ahora se comprueba directamente si el asiento esta disponible.
         for (Asiento asiento : asientos) {
             if (!f.estaDisponible(asiento.fila, asiento.numero)) {
                 throw new ReservaException(

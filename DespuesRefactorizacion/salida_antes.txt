@@ -114,3 +114,12 @@ Ocupados: [F5, F6]
 Precio Ana (socio): 20.4
 Reserva 1 cancelada
 No se pudo cancelar la reserva: No existe la reserva: 99
+
+REFACTOR: Replace exception with test
+
+Reserva Ana: 1
+No se pudo crear la reserva: El asiento F6 no esta disponible
+Ocupados: [F5, F6]
+Precio Ana (socio): 20.4
+Reserva 1 cancelada
+No se pudo cancelar la reserva: No existe la reserva: 99
