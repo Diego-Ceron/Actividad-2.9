@@ -15,8 +15,11 @@ public class Reserva {
         this.asientos = asientos;
     }
 
-    public void setCancelada(boolean cancelada) {
-        this.cancelada = cancelada;
+    //TECNICA UTILIZADA: Remove setting method
+    //REFACTOR: Se elimino el set porque una reserva no podria dejar de estar
+    //cancelada despues. Se cambia por un metodo dedicado a cancelar la reserva.
+    public void cancelarReserva() {
+        this.cancelada = true;
     }
 
     public double calcularPrecio() {
