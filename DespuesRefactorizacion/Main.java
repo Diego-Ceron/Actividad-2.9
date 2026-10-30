@@ -19,18 +19,32 @@ public class Main {
         // F7 se marca como ocupado antes de fallar en F6 (bug)
         Cliente cliente2 = new Cliente("luis", "luis@mail.com", false);
         List<Asiento> asientos2 = List.of(new Asiento('F', 7), new Asiento('F', 6));
-        int r2 = s.hacerReserva(
-            cliente2,
-            f,
-            asientos2,
-            "Taquilla");
-        System.out.println("Reserva Luis: " + r2);
+        try {
+            int r2 = s.hacerReserva(
+                cliente2,
+                f,
+                asientos2,
+                "Taquilla");
+            System.out.println("Reserva Luis: " + r2);
+        } catch (ReservaException e) {
+            System.out.println("No se pudo crear la reserva: " + e.getMessage());
+        }
         System.out.println("Ocupados: " + f.obtenerOcupados());
 
         Reserva ana = s.buscar(1);
         System.out.println("Precio Ana (socio): " + ana.precio);
 
-        System.out.println("Cancelar 1: " + s.cancelar(1));
-        System.out.println("Cancelar 99: " + s.cancelar(99));
+        try {
+            s.cancelar(1);
+            System.out.println("Reserva 1 cancelada");
+        } catch (ReservaException e) {
+            System.out.println("No se pudo cancelar la reserva: " + e.getMessage());
+        }
+
+        try {
+            s.cancelar(99);
+        } catch (ReservaException e) {
+            System.out.println("No se pudo cancelar la reserva: " + e.getMessage());
+        }
     }
 }
