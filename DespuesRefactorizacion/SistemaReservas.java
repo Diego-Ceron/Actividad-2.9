@@ -45,17 +45,9 @@ public class SistemaReservas {
         if (tipo.equals("general")) {
             return base;
         } else if (tipo.equals("socio")) {
-            return descuentoDel15(base);
+            return r.aplicarDescuento(base, 0.15);
         }
         return base;
-    }
-
-    public double descuentoDel15(double p) {
-        return p - p * 0.15;
-    }
-
-    public double descuentoDel25(double p) {   // duplicado, sin uso
-        return p - p * 0.25;
     }
 
     // Downcast repetido en cada llamada
