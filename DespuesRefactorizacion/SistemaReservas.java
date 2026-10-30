@@ -56,7 +56,7 @@ public class SistemaReservas {
         if (r == null) return -1;
         if (r.cancelada) return -2;
         for (String a : r.asientos) {
-            r.funcion.ocupados.remove(a);
+            r.funcion.liberarAsiento(a);
         }
         r.setCancelada(true);
         return 0;

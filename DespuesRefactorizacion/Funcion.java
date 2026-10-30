@@ -6,7 +6,7 @@ public class Funcion {
     public int sala;
     public String hora;
     public double precio;
-    public List<String> ocupados = new ArrayList<>();
+    private List<String> ocupados = new ArrayList<>();
 
     public Funcion(String titulo, int sala, String hora, double precio) {
         this.titulo = titulo;
@@ -26,6 +26,17 @@ public class Funcion {
     public boolean estaDisponible(char fila, int numero) {
         String codigo = "" + fila + numero;
         return !ocupados.contains(codigo);
+    }
+
+    //TECNICA UTILIZADA: Hide method
+    //REFACTOR: Se hizo privada la lista de ocupados, se proporcionan metodos para leer y modificar
+    //la lista, de esta manera ninguna clase puede modificarla directamente.
+    public List<String> obtenerOcupados() {
+        return new ArrayList<>(ocupados);
+    }
+
+    public void liberarAsiento(String codigo) {
+        ocupados.remove(codigo);
     }
 
     public void setPrecio(double precio) {

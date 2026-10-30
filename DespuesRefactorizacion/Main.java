@@ -25,7 +25,7 @@ public class Main {
             asientos2,
             "Taquilla");
         System.out.println("Reserva Luis: " + r2);
-        System.out.println("Ocupados: " + f.ocupados);
+        System.out.println("Ocupados: " + f.obtenerOcupados());
 
         Reserva ana = (Reserva) s.buscar(1);
         System.out.println("Precio Ana (socio): " + ana.precio);
