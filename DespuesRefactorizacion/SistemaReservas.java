@@ -10,20 +10,25 @@ public class SistemaReservas {
     // TÉCNICA UTILIZADA: Rename method
     // REFACTOR: Al aplicar la técnica se cambio el nombre poco claro del método por
     // uno mas claro
-    // TÉCNICA UTILIZADA: Remove parameter
+    // TÉCNICA UTILIZADA: Remove arameter
     //REFACTOR: Al aplicar la técnica se elimina el parámetro sin usar 'boolean imprimir'
     // TÉCNICA UTILIZADA: Preserve whole object
     // REFACTOR: Se pasa el objeto cliente en vez de cada uno de sus parámetros individualmente
-    public int hacerReserva(Cliente cliente, Funcion f,
-                     char[] filas, int[] numeros, String canal) {
+    // TECNICA UTILIZADA: Introduce Parameter Object
+    // Refactor: Se creó el objeto Asiento, en main se crea una lista de objetos asiento,
+    // esa lista se pasa como parámetro al método 'hacerReserva()'
+    public int hacerReserva(Cliente cliente, Funcion f, List<Asiento> asientos, String canal) {
         if (cliente == null || f == null) return -1;
-        if (filas.length == 0 || filas.length != numeros.length) return -2;
+        if (asientos == null || asientos.isEmpty()) return -2;
         try {
             List<String> lista = new ArrayList<>();
-            for (int i = 0; i < filas.length; i++) {
-                f.ocupar(filas[i], numeros[i]);   // si falla a mitad, los anteriores ya quedaron ocupados
-                lista.add("" + filas[i] + numeros[i]);
+
+            // se recorre la lista de asientos sin depender de indices
+            for (Asiento asiento : asientos) {
+                f.ocupar(asiento.fila, asiento.numero);
+                lista.add(asiento.toString());
             }
+
             Reserva r = new Reserva(contador, cliente, f, lista);
             r.precio = calcularPrecio(r, cliente.socio ? "socio" : "general");
             db.put(contador, r);
